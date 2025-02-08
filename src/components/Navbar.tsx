@@ -10,7 +10,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <img src="/lovable-uploads/4d83e56b-1d8a-4b7e-a186-41166f1cbd6d.png" alt="AK Rubber Logo" className="h-12 w-12" />
+            <img src="/lovable-uploads/6ded73ce-99af-437d-97a4-2e55f87fb4ac.png" alt="AK Rubber Logo" className="h-12 w-12" />
             <div className="ml-4">
               <h1 className="text-xl font-semibold">AK Rubber Spares</h1>
               <p className="text-xs text-gray-500">SINCE 1991</p>
