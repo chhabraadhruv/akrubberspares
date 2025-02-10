@@ -34,7 +34,9 @@ const Index = () => {
         
         <div className="mt-12 text-center">
           <a
-            href="#"
+            href="https://drive.google.com/file/d/1Pr42PnUVN7hULO2B1qdUcza7V8mSTfPk/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-white bg-black hover:bg-gray-800 transition-colors"
           >
             <Download className="mr-2" />
