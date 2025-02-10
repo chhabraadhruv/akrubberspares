@@ -4,6 +4,13 @@ import ProductCarousel from "@/components/ProductCarousel";
 import { Download, Phone, Mail, MapPin } from "lucide-react";
 
 const Index = () => {
+  // Function to create WhatsApp link with pre-filled message
+  const getWhatsAppLink = (phoneNumber: string) => {
+    // Remove any non-numeric characters from phone number
+    const cleanNumber = phoneNumber.replace(/\D/g, '');
+    return `https://wa.me/91${cleanNumber}?text=Hi,%20I%20found%20your%20contact%20from%20AK%20Rubber%20Spares%20website.`;
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -58,7 +65,24 @@ const Index = () => {
         <div className="grid md:grid-cols-3 gap-8 max-w-3xl mx-auto">
           <div className="text-center">
             <Phone className="w-8 h-8 mx-auto mb-4" />
-            <p className="text-gray-600">9810580983, 9910249777</p>
+            <div className="space-y-2">
+              <a 
+                href={getWhatsAppLink('9810580983')} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block text-gray-600 hover:text-green-600 transition-colors"
+              >
+                9810580983
+              </a>
+              <a 
+                href={getWhatsAppLink('9910249777')} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block text-gray-600 hover:text-green-600 transition-colors"
+              >
+                9910249777
+              </a>
+            </div>
           </div>
           <div className="text-center">
             <Mail className="w-8 h-8 mx-auto mb-4" />
