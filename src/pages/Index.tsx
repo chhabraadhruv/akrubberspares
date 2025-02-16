@@ -12,16 +12,16 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gray-900">
       <Navbar />
       
       {/* Hero Section */}
       <section id="home" className="pt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center animate-fade-in">
-          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">
             AK Rubber Spares
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
             All kinds of Hydraulic & Pneumatic Seals, V Seals, O Rings, Oil Seals & All Types of Rubber in Synthetic, Neoprene, Silicon, Viton Rubber, P.U. Rubber & P.U. Seals etc.
           </p>
         </div>
@@ -29,7 +29,7 @@ const Index = () => {
 
       {/* Products Section */}
       <section id="products" className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Our Products</h2>
+        <h2 className="text-3xl font-bold text-white mb-8 text-center">Our Products</h2>
         <ProductCarousel />
         
         <div className="mt-12 text-center">
@@ -37,7 +37,7 @@ const Index = () => {
             href="https://drive.google.com/file/d/1Pr42PnUVN7hULO2B1qdUcza7V8mSTfPk/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-white bg-black hover:bg-gray-800 transition-colors"
+            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-gray-900 bg-white hover:bg-gray-100 transition-colors"
           >
             <Download className="mr-2" />
             Download Our Latest Catalogue 2025
@@ -46,16 +46,16 @@ const Index = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-gray-50">
+      <section id="about" className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-gray-800">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">About us</h2>
-          <p className="text-lg text-gray-600 mb-6">
+          <h2 className="text-3xl font-bold text-white mb-8">About us</h2>
+          <p className="text-lg text-gray-300 mb-6">
             Since 1991, AK Rubber Spares has been a trusted name in providing high-quality rubber and hydraulic components.
           </p>
-          <p className="text-lg text-gray-600 mb-6">
+          <p className="text-lg text-gray-300 mb-6">
             We specialize in delivering precision-engineered seals, O-rings, and industrial rubber products. Our commitment to customer satisfaction and top-notch quality has made us a reliable partner in the industry for over three decades.
           </p>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-400">
             GSTIN: 06AAGPC8120M2ZS
           </p>
         </div>
@@ -63,16 +63,16 @@ const Index = () => {
 
       {/* Contact Section */}
       <section id="contact" className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Contact us</h2>
+        <h2 className="text-3xl font-bold text-white mb-8 text-center">Contact us</h2>
         <div className="grid md:grid-cols-3 gap-8 max-w-3xl mx-auto">
           <div className="text-center">
-            <Phone className="w-8 h-8 mx-auto mb-4" />
+            <Phone className="w-8 h-8 mx-auto mb-4 text-white" />
             <div className="space-y-2">
               <a 
                 href={getWhatsAppLink('9810580983')} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="block text-gray-600 hover:text-green-600 transition-colors"
+                className="block text-gray-300 hover:text-green-400 transition-colors"
               >
                 9810580983
               </a>
@@ -80,21 +80,21 @@ const Index = () => {
                 href={getWhatsAppLink('9910249777')} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="block text-gray-600 hover:text-green-600 transition-colors"
+                className="block text-gray-300 hover:text-green-400 transition-colors"
               >
                 9910249777
               </a>
             </div>
           </div>
           <div className="text-center">
-            <Mail className="w-8 h-8 mx-auto mb-4" />
-            <a href="mailto:chhabraajay25@gmail.com" className="text-gray-600 hover:text-gray-900">
+            <Mail className="w-8 h-8 mx-auto mb-4 text-white" />
+            <a href="mailto:chhabraajay25@gmail.com" className="text-gray-300 hover:text-white">
               chhabraajay25@gmail.com
             </a>
           </div>
           <div className="text-center">
-            <MapPin className="w-8 h-8 mx-auto mb-4" />
-            <p className="text-gray-600">
+            <MapPin className="w-8 h-8 mx-auto mb-4 text-white" />
+            <p className="text-gray-300">
               Shop No. 2, 434/8 Madanpuri Road, Opp. Laxmi Bazaar, New Colony, Gurugram (HR)
             </p>
           </div>
@@ -102,9 +102,9 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-6">
+      <footer className="bg-black text-white py-6">
         <div className="text-center">
-          <p>Copyrights © 2025 AK Rubber | Made by DC</p>
+          <p>Made with ❤️ by DC</p>
         </div>
       </footer>
     </div>
