@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import ProductCarousel from "@/components/ProductCarousel";
 import { Download, Phone, Mail, MapPin } from "lucide-react";
@@ -12,7 +11,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-black">
       <Navbar />
       
       {/* Hero Section */}
@@ -46,7 +45,7 @@ const Index = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-gray-800">
+      <section id="about" className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-zinc-900">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-white mb-8">About us</h2>
           <p className="text-lg text-gray-300 mb-6">
@@ -102,7 +101,7 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black text-white py-6">
+      <footer className="bg-zinc-950 text-white py-6">
         <div className="text-center">
           <p>Made with ❤️ by DC</p>
         </div>
