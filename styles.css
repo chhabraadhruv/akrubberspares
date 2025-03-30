@@ -2,10 +2,13 @@
 /* Base styles */
 :root {
   --primary: #000000;
-  --secondary: #333333;
+  --secondary: #121212;
   --accent: #ffffff;
+  --accent-blue: #0071e3;
   --text-primary: #ffffff;
-  --text-secondary: #888888;
+  --text-secondary: #86868b;
+  --transition-standard: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 * {
@@ -19,10 +22,11 @@ html {
 }
 
 body {
-  font-family: 'Lexend', sans-serif;
+  font-family: 'Lexend', -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: var(--primary);
   color: var(--text-primary);
   line-height: 1.6;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 .container {
@@ -31,16 +35,17 @@ body {
   padding: 0 2rem;
 }
 
-/* Navbar */
+/* Enhanced Navbar with Apple-inspired animations */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   z-index: 1000;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .nav-container {
@@ -62,16 +67,17 @@ body {
 .nav-logo {
   height: 3rem;
   width: 3rem;
-  transition: transform 0.3s ease;
+  transition: var(--transition-bounce);
 }
 
 .nav-logo:hover {
-  transform: scale(1.05);
+  transform: scale(1.05) rotate(-5deg);
 }
 
 .brand-text h1 {
   font-size: 1.25rem;
   font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 .brand-text p {
@@ -88,7 +94,12 @@ body {
   text-decoration: none;
   padding: 0.5rem 1rem;
   position: relative;
-  transition: color 0.3s ease;
+  transition: var(--transition-standard);
+  opacity: 0.8;
+}
+
+.nav-links a:hover {
+  opacity: 1;
 }
 
 .nav-links a::after {
@@ -101,7 +112,7 @@ body {
   background-color: var(--accent);
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .nav-links a:hover::after {
@@ -115,24 +126,48 @@ body {
   color: var(--text-primary);
   cursor: pointer;
   display: block;
+  padding: 0.5rem;
+  transition: var(--transition-standard);
+}
+
+.mobile-menu-btn:hover {
+  opacity: 0.7;
 }
 
 .mobile-menu {
   display: none;
-  background-color: var(--secondary);
+  background-color: rgba(18, 18, 18, 0.95);
   padding: 1rem;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(-10px);
+  opacity: 0;
 }
 
 .mobile-menu.active {
   display: block;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.mobile-menu.animate-slide-in {
+  animation: slideIn 0.3s forwards cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 .mobile-menu a {
   display: block;
   color: var(--text-primary);
   text-decoration: none;
-  padding: 0.5rem 1rem;
-  transition: all 0.3s ease;
+  padding: 0.75rem 1rem;
+  margin: 0.25rem 0;
+  transition: var(--transition-standard);
+  border-radius: 8px;
 }
 
 .mobile-menu a:hover {
@@ -140,43 +175,109 @@ body {
   transform: translateX(0.5rem);
 }
 
-/* Hero Section */
+/* Hero Section with enhanced parallax */
 .hero {
-  padding: 8rem 0 4rem;
+  padding: 8rem 0 6rem;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(50, 50, 50, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%);
+  z-index: -1;
+  transform: scale(1.1);
+  transition: transform 0.5s ease;
+}
+
+.hero:hover::before {
+  transform: scale(1);
 }
 
 .hero h1 {
-  font-size: 3rem;
+  font-size: 4rem;
   margin-bottom: 1.5rem;
-  transition: transform 0.3s ease;
+  transition: var(--transition-bounce);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  background: linear-gradient(90deg, #fff 0%, #d0d0d0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero h1:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
+  letter-spacing: -0.02em;
 }
 
 .hero p {
   max-width: 48rem;
   margin: 0 auto;
   color: var(--text-secondary);
+  font-size: 1.25rem;
+  transition: var(--transition-standard);
+  font-weight: 400;
 }
 
-/* Products Section */
+.hero p:hover {
+  color: var(--text-primary);
+}
+
+/* Products Section with enhanced interactions */
 .products {
-  padding: 4rem 0;
+  padding: 8rem 0;
   text-align: center;
+  background-color: #080808;
+  position: relative;
+  overflow: hidden;
+}
+
+.products::after {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: radial-gradient(circle at center, rgba(50, 50, 50, 0.2) 0%, transparent 50%);
+  z-index: 0;
+  opacity: 0.5;
+}
+
+.products .container {
+  position: relative;
+  z-index: 1;
+}
+
+.products h2 {
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 .carousel {
   position: relative;
-  margin: 2rem 0;
+  margin: 3rem 0;
   overflow: hidden;
+  padding: 2rem 0;
 }
 
 .carousel-inner {
   display: flex;
-  transition: transform 0.3s ease;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  padding: 1rem 0;
 }
 
 .carousel-inner img {
@@ -185,6 +286,17 @@ body {
   height: auto;
   object-fit: cover;
   margin: 0 1rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: var(--transition-bounce);
+  transform-origin: center;
+  opacity: 0.7;
+}
+
+.carousel-inner img:hover {
+  transform: scale(1.05) translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  opacity: 1;
 }
 
 .carousel-prev,
@@ -195,61 +307,118 @@ body {
   background: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
-  padding: 1rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: var(--transition-standard);
+  z-index: 2;
 }
 
-.carousel-prev { left: 0; }
-.carousel-next { right: 0; }
+.carousel-prev { left: 10px; }
+.carousel-next { right: 10px; }
 
 .carousel-prev:hover,
 .carousel-next:hover {
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transform: translateY(-50%) scale(1.1);
 }
 
 .download-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background-color: var(--accent);
-  color: var(--primary);
+  padding: 0.75rem 1.75rem;
+  background-color: var(--accent-blue);
+  color: var(--accent);
   text-decoration: none;
   border-radius: 9999px;
-  transition: all 0.3s ease;
+  transition: var(--transition-bounce);
+  font-weight: 500;
+  margin-top: 2rem;
 }
 
 .download-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 113, 227, 0.4);
+  background-color: #0077ED;
 }
 
-/* About Section */
+.download-btn:active {
+  transform: scale(0.98);
+}
+
+/* About Section with subtle animations */
 .about {
-  padding: 4rem 0;
-  background-color: #111111;
+  padding: 8rem 0;
+  background-color: #0a0a0a;
+  position: relative;
+  overflow: hidden;
+}
+
+.about::before {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(70, 70, 70, 0.2), transparent 70%);
+  top: -100px;
+  right: -100px;
+  z-index: 0;
 }
 
 .about .container {
   max-width: 48rem;
   text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.about h2 {
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 .about p {
-  margin: 1rem 0;
+  margin: 1.5rem 0;
   color: var(--text-secondary);
+  font-size: 1.125rem;
+  line-height: 1.8;
+  transition: var(--transition-standard);
+}
+
+.about p:hover {
+  color: var(--text-primary);
 }
 
 .gstin {
   font-size: 0.875rem;
   color: var(--text-secondary);
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Contact Section */
+/* Contact Section with hover interactions */
 .contact {
-  padding: 4rem 0;
+  padding: 8rem 0;
   text-align: center;
+  background-color: #080808;
+}
+
+.contact h2 {
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 .contact-grid {
@@ -264,38 +433,66 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  padding: 2rem;
-  transition: transform 0.3s ease;
+  padding: 2.5rem 2rem;
+  transition: var(--transition-bounce);
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .contact-card:hover {
-  transform: translateY(-0.5rem);
+  transform: translateY(-0.75rem);
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
 .contact-card svg {
-  width: 2rem;
-  height: 2rem;
-  color: var(--accent);
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--accent-blue);
+  transition: var(--transition-bounce);
+}
+
+.contact-card:hover svg {
+  transform: scale(1.2);
+}
+
+.contact-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
 .contact-card a {
   color: var(--text-secondary);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: var(--transition-standard);
+  font-size: 1rem;
 }
 
 .contact-card a:hover {
   color: var(--accent);
 }
 
-/* Footer */
+/* Footer with subtle hover effect */
 footer {
-  background-color: #111111;
-  padding: 1.5rem;
+  background-color: #0a0a0a;
+  padding: 2.5rem 1.5rem;
   text-align: center;
+  position: relative;
 }
 
-/* Media Queries */
+footer p {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  transition: var(--transition-standard);
+}
+
+footer p:hover {
+  color: var(--text-primary);
+}
+
+/* Enhanced Media Queries */
 @media (min-width: 768px) {
   .nav-links {
     display: flex;
@@ -307,27 +504,90 @@ footer {
   }
 
   .hero h1 {
-    font-size: 4rem;
+    font-size: 5rem;
+  }
+  
+  .hero p {
+    font-size: 1.5rem;
+  }
+  
+  .carousel-inner img {
+    max-width: 350px;
   }
 }
 
-/* Animations */
+@media (min-width: 1024px) {
+  .hero h1 {
+    font-size: 6rem;
+  }
+  
+  .carousel-inner img {
+    max-width: 400px;
+  }
+  
+  .contact-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Enhanced Animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes floatAnimation {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
 .fade-in {
-  animation: fadeIn 0.6s ease-out forwards;
+  animation: fadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.scale-in {
+  animation: scaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 [data-scroll] {
   opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s ease-out;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: opacity, transform;
 }
 
 [data-scroll].in-view {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Float animation for interactive elements */
+.download-btn svg {
+  animation: floatAnimation 2s infinite ease-in-out;
+}
+
+/* Custom cursor for interactive elements */
+.carousel-prev,
+.carousel-next,
+.download-btn,
+.nav-links a,
+.contact-card,
+.mobile-menu a {
+  cursor: pointer;
+}
+
+/* Enhanced focus states for accessibility */
+:focus {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
 }
